@@ -1,0 +1,8 @@
+#
+####### requirements.txt #######
+#
+###### Requirements ######
+numpy
+cx_Oracle
+django
+#
