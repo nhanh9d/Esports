@@ -7,7 +7,7 @@ cx-Oracle==7.3.0
 Django==2.2.10
 django-cors-headers==2.2.0
 django-filter==2.0.0
-djangorestframework>=3.9.1
+djangorestframework==3.11.0
 djangorestframework-jwt==1.11.0
 ecdsa==0.15
 isort==4.3.4
@@ -23,5 +23,5 @@ pytz==2018.5
 rsa==4.0
 six==1.11.0
 sqlparse==0.3.1
-typed-ast==1.1.0
+typed-ast==1.4.0
 wrapt==1.10.11
