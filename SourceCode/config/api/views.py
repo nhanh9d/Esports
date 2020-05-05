@@ -3,8 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework import viewsets
 
-from api.models import User
-from api.serializers import UserSerializer
+from api.models import User, Article
+from api.serializers import UserSerializer, ArticleSerializer
 
 #permissions
 from rest_framework.permissions import AllowAny
@@ -34,22 +34,20 @@ class UserViewSet(viewsets.ModelViewSet):
             permission_classes = [AllowAny]
         print(self)
         return [permission() for permission in permission_classes]
+    
 
-def user_list(request):
-    data = []
-    nextPage = 1
-    previousPage = 1
-    users = User.objects.all()
-    page = request.GET.get('page', 1)
-    limit = request.GET.get('limit', 20)
-    paginator = Paginator(users, limit)
-    try:
-        data = paginator.page(page)
-    except PageNotAnInteger:
-        data = paginator.page(1)
-    except EmptyPage:
-        data = paginator.page(paginator.num_pages)
-    
-    serializer = UserSerializer(data,context={'request': request} ,many=True)
-    
-    return Response({'data': serializer.data , 'count': paginator.count})
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+
+    # Add this code block
+    def get_permissions(self):
+        permission_classes = []
+        if self.action == 'create':
+            permission_classes = [AllowAny]
+        elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
+            permission_classes = [AllowAny]
+        elif self.action == 'list' or self.action == 'destroy':
+            permission_classes = [AllowAny]
+        print(self)
+        return [permission() for permission in permission_classes]

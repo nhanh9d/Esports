@@ -186,12 +186,12 @@
         })
       },
       setTagsViewTitle() {
-        const title = 'Edit Users'
+        const title = 'Edit User'
         const route = Object.assign({}, this.tempRoute, { title: `${title}-${this.postForm.email}` })
         this.$store.dispatch('tagsView/updateVisitedView', route)
       },
       setPageTitle() {
-        const title = 'Edit Users'
+        const title = 'Edit User'
         document.title = `${title} - ${this.postForm.email}`
       },
       submitForm() {
@@ -200,9 +200,10 @@
             this.loading = true
             this.$store.dispatch(this.isEdit ? 'user/edit' : 'user/create', this.postForm)
               .then(() => {
+                const message = this.isEdit ? 'Success edit account' : 'Success register new account'
                 this.$notify({
                   title: 'Success',
-                  message: 'Success register new account',
+                  message: message,
                   type: 'success',
                   duration: 2000
                 })

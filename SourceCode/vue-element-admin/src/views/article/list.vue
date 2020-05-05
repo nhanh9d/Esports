@@ -1,21 +1,29 @@
 <template>
   <div class="app-container">
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
-      <el-table-column align="center" label="ID" width="80">
+      <el-table-column align="center" label="ID" width="180">
         <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
+          <span>{{ scope.row.article_id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180px" align="center" label="Date">
-        <template slot-scope="scope">
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+      <el-table-column min-width="300px" label="Title">
+        <template slot-scope="{row}">
+          <router-link :to="'/example/edit/'+row.article_id" class="link-type">
+            <span>{{ row.title }}</span>
+          </router-link>
         </template>
       </el-table-column>
 
-      <el-table-column width="120px" align="center" label="Author">
+      <el-table-column width="180px" align="center" label="Display Time">
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          <span>{{ format_date(scope.row.display_time) }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column width="180px" align="center" label="Created Time">
+        <template slot-scope="scope">
+          <span>{{ format_date(scope.row.created_date) }}</span>
         </template>
       </el-table-column>
 
@@ -25,25 +33,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" label="Status" width="110">
-        <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
-          </el-tag>
-        </template>
-      </el-table-column>
-
-      <el-table-column min-width="300px" label="Title">
-        <template slot-scope="{row}">
-          <router-link :to="'/example/edit/'+row.id" class="link-type">
-            <span>{{ row.title }}</span>
-          </router-link>
-        </template>
-      </el-table-column>
-
       <el-table-column align="center" label="Actions" width="120">
         <template slot-scope="scope">
-          <router-link :to="'/example/edit/'+scope.row.id">
+          <router-link :to="'/example/edit/'+scope.row.article_id">
             <el-button type="primary" size="small" icon="el-icon-edit">
               Edit
             </el-button>
@@ -57,56 +49,63 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
-import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
+  import { fetchList } from '@/api/article'
+  import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
+  import moment from 'moment'
 
-export default {
-  name: 'ArticleList',
-  components: { Pagination },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'info',
-        deleted: 'danger'
+  export default {
+    name: 'ArticleList',
+    components: { Pagination },
+    filters: {
+      statusFilter(status) {
+        const statusMap = {
+          published: 'success',
+          draft: 'info',
+          deleted: 'danger'
+        }
+        return statusMap[status]
       }
-      return statusMap[status]
-    }
-  },
-  data() {
-    return {
-      list: null,
-      total: 0,
-      listLoading: true,
-      listQuery: {
-        page: 1,
-        limit: 20
+    },
+    data() {
+      return {
+        list: null,
+        total: 0,
+        listLoading: true,
+        listQuery: {
+          page: 1,
+          limit: 20
+        }
       }
-    }
-  },
-  created() {
-    this.getList()
-  },
-  methods: {
-    getList() {
-      this.listLoading = true
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.total = response.data.total
-        this.listLoading = false
-      })
+    },
+    created() {
+      this.getList()
+    },
+    methods: {
+      format_date(value){
+         if (value) {
+           return moment(String(value)).format('DD/MM/YYYY hh:mm')
+         }
+      },
+      getList() {
+        this.listLoading = true
+        fetchList(this.listQuery).then(response => {
+          this.list = response.data.results
+          this.total = response.data.count
+          this.listLoading = false
+        })
+      }
     }
   }
-}
 </script>
 
 <style scoped>
-.edit-input {
-  padding-right: 100px;
-}
-.cancel-btn {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-}
+  .edit-input {
+    padding-right: 100px;
+  }
+
+  .cancel-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+  }
 </style>
