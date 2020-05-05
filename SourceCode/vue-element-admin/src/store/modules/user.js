@@ -1,8 +1,9 @@
-import { login, logout, getInfo } from '@/api/user'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { login, logout, getInfo, create, edit } from '@/api/user'
+import { getToken, setToken, removeToken, getId, setId, removeId } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
 const state = {
+  id: getId(),
   token: getToken(),
   name: '',
   avatar: '',
@@ -11,6 +12,9 @@ const state = {
 }
 
 const mutations = {
+  SET_ID: (state, id) => {
+    state.id = id
+  },
   SET_TOKEN: (state, token) => {
     state.token = token
   },
@@ -31,12 +35,14 @@ const mutations = {
 const actions = {
   // user login
   login({ commit }, userInfo) {
-    const { username, password } = userInfo
+    const { email, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      login({ username: '', email: email.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
+        commit('SET_ID', data.user.pk)
         setToken(data.token)
+        setId(data.user.pk)
         resolve()
       }).catch(error => {
         reject(error)
@@ -47,25 +53,56 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
+      getInfo(state.id).then(response => {
         const { data } = response
 
         if (!data) {
           reject('Verification failed, please Login again.')
         }
 
-        const { roles, name, avatar, introduction } = data
+        //const { roles, name, avatar, introduction } = data
+        const dataFake = {
+          roles: ['admin'],
+          introduction: 'I am a super administrator',
+          avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+          name: 'Super Admin'
+        }
+        const { roles, name, avatar, introduction } = dataFake
 
         // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
-        }
+        //if (!roles || roles.length <= 0) {
+        //  reject('getInfo: roles must be a non-null array!')
+        //}
 
         commit('SET_ROLES', roles)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
         commit('SET_INTRODUCTION', introduction)
-        resolve(data)
+        resolve(dataFake)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
+  // user create
+  create({ commit }, postForm) {
+    const { email, password, first_name, last_name, telephone_number } = postForm
+    return new Promise((resolve, reject) => {
+      create(email, password, first_name, last_name, telephone_number).then(() => {
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
+  // user edit
+  edit({ commit }, postForm) {
+    const { email, password, first_name, last_name, telephone_number } = postForm
+    return new Promise((resolve, reject) => {
+      edit(email, password, first_name, last_name, telephone_number).then(() => {
+        resolve()
       }).catch(error => {
         reject(error)
       })

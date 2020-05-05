@@ -1,0 +1,5 @@
+djangorestframework==3.8.2
+pillow
+django-rest-auth
+djangorestframework-jwt
+django-cors-headers

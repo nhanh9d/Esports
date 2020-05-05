@@ -23,6 +23,9 @@ export default {
       'roles'
     ])
   },
+  mounted() {
+    this.checkLoggedIn()
+  },
   created() {
     if (this.roles.includes('admin')) {
       this.currentRole = 'adminDashboard'
@@ -32,6 +35,11 @@ export default {
     }
     if (this.roles.includes('visitor')) {
       this.currentRole = 'visitorDashboard'
+    }
+  },
+  methods: {
+    checkLoggedIn() {
+      this.$router.push('/login')
     }
   }
 }

@@ -6,8 +6,8 @@ import { getToken } from '@/utils/auth'
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  //withCredentials: true, // send cookies when cross-domain requests
+  timeout: 30000 // request timeout
 })
 
 // request interceptor
@@ -43,10 +43,10 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    const res = response.data
-
+    const res = response
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    const isSuccess = res.status && [200, 201].includes(res.status)
+    if (!isSuccess) {
       Message({
         message: res.message || 'Error',
         type: 'error',

@@ -191,31 +191,62 @@ export const asyncRoutes = [
   //tableRouter,
 
   {
-    path: '/example',
+    path: '/users',
     component: Layout,
-    redirect: '/example/list',
-    name: 'Example',
+    redirect: '/users/list',
+    name: 'Users',
     meta: {
-      title: 'Example',
+      title: 'Users',
       icon: 'example'
     },
     children: [
       {
         path: 'create',
-        component: () => import('@/views/example/create'),
+        component: () => import('@/views/users/create'),
+        name: 'CreateUsers',
+        meta: { title: 'Create Users', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/users/edit'),
+        name: 'EditUsers',
+        meta: { title: 'Edit Users', noCache: true, activeMenu: '/users/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/users/list'),
+        name: 'UsersList',
+        meta: { title: 'Users List', icon: 'list' }
+      }
+    ]
+  },
+  {
+    path: '/article',
+    component: Layout,
+    redirect: '/article/list',
+    name: 'Article',
+    meta: {
+      title: 'Article',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/article/create'),
         name: 'CreateArticle',
         meta: { title: 'Create Article', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
-        component: () => import('@/views/example/edit'),
+        component: () => import('@/views/article/edit'),
         name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+        meta: { title: 'Edit Article', noCache: true, activeMenu: '/article/list' },
         hidden: true
       },
       {
         path: 'list',
-        component: () => import('@/views/example/list'),
+        component: () => import('@/views/article/list'),
         name: 'ArticleList',
         meta: { title: 'Article List', icon: 'list' }
       }

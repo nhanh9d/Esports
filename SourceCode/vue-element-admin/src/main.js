@@ -19,6 +19,8 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
+import VueSession from 'vue-session' // user session
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -41,9 +43,12 @@ Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
 
+// register session
+Vue.use(VueSession)
+
 Vue.config.productionTip = false
 
-new Vue({
+var v = new Vue({
   el: '#app',
   router,
   store,

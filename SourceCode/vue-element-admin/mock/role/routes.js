@@ -313,37 +313,6 @@ export const asyncRoutes = [
   //  ]
   //},
 
-  {
-    path: '/example',
-    component: 'layout/Layout',
-    redirect: '/example/list',
-    name: 'Example',
-    meta: {
-      title: 'Example',
-      icon: 'example'
-    },
-    children: [
-      {
-        path: 'create',
-        component: 'views/example/create',
-        name: 'CreateArticle',
-        meta: { title: 'Create Article', icon: 'edit' }
-      },
-      {
-        path: 'edit/:id(\\d+)',
-        component: 'views/example/edit',
-        name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true },
-        hidden: true
-      },
-      {
-        path: 'list',
-        component: 'views/example/list',
-        name: 'ArticleList',
-        meta: { title: 'Article List', icon: 'list' }
-      }
-    ]
-  },
 
   //{
   //  path: '/tab',
@@ -357,6 +326,69 @@ export const asyncRoutes = [
   //    }
   //  ]
   //},
+
+  {
+    path: '/users',
+    component: 'layout/Layout',
+    redirect: '/users/list',
+    name: 'Users',
+    meta: {
+      title: 'Users',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: '/views/users/create',
+        name: 'CreateUsers',
+        meta: { title: 'Create Users', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: '/views/users/edit',
+        name: 'EditUsers',
+        meta: { title: 'Edit Users', noCache: true, activeMenu: '/users/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: '/views/users/list',
+        name: 'UsersList',
+        meta: { title: 'Users List', icon: 'list' }
+      }
+    ]
+  },
+  {
+    path: '/article',
+    component: 'layout/Layout',
+    redirect: '/article/list',
+    name: 'Article',
+    meta: {
+      title: 'Article',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: '/views/article/create',
+        name: 'CreateArticle',
+        meta: { title: 'Create Article', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: '/views/article/edit',
+        name: 'EditArticle',
+        meta: { title: 'Edit Article', noCache: true, activeMenu: '/article/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: '/views/article/list',
+        name: 'ArticleList',
+        meta: { title: 'Article List', icon: 'list' }
+      }
+    ]
+  },
 
   {
     path: '/error',
