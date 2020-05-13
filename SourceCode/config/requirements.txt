@@ -1,5 +1,8 @@
-djangorestframework==3.8.2
+djangorestframework==3.9.1
 pillow
 django-rest-auth
 djangorestframework-jwt
 django-cors-headers
+numpy
+#cx_Oracle
+django
