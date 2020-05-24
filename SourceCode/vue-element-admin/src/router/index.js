@@ -345,6 +345,99 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/team',
+    component: Layout,
+    redirect: '/team/list',
+    name: 'Team',
+    meta: {
+      title: 'Team',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/team/create'),
+        name: 'CreateTeam',
+        meta: { title: 'Create Team', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/team/edit'),
+        name: 'EditTeam',
+        meta: { title: 'Edit Team', noCache: true, activeMenu: '/team/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/team/list'),
+        name: 'TeamList',
+        meta: { title: 'Team List', icon: 'list' }
+      }
+    ]
+  },
+  {
+    path: '/league',
+    component: Layout,
+    redirect: '/league/list',
+    name: 'League',
+    meta: {
+      title: 'League',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/league/create'),
+        name: 'CreateLeague',
+        meta: { title: 'Create League', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/league/edit'),
+        name: 'EditLeague',
+        meta: { title: 'Edit League', noCache: true, activeMenu: '/league/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/league/list'),
+        name: 'LeagueList',
+        meta: { title: 'League List', icon: 'list' }
+      }
+    ]
+  },
+  {
+    path: '/match',
+    component: Layout,
+    redirect: '/match/list',
+    name: 'Match',
+    meta: {
+      title: 'Match',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/match/create'),
+        name: 'CreateMatch',
+        meta: { title: 'Create Match', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/match/edit'),
+        name: 'EditMatch',
+        meta: { title: 'Edit Match', noCache: true, activeMenu: '/match/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/match/list'),
+        name: 'MatchList',
+        meta: { title: 'Match List', icon: 'list' }
+      }
+    ]
+  },
 
   //{
   //  path: '/tab',

@@ -388,6 +388,7 @@ export const asyncRoutes = [
         meta: { title: 'Article List', icon: 'list' }
       }
     ]
+  },
   {
     path: '/status',
     component: 'layout/Layout',

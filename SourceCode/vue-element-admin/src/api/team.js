@@ -3,7 +3,7 @@ import { getToken } from '@/utils/auth'
 
 export function fetchList(query) {
   return request({
-    url: 'http://127.0.0.1:8000/api/games/',
+    url: 'http://127.0.0.1:8000/api/teams/',
     method: 'get',
     params: query,
     headers: {
@@ -12,40 +12,40 @@ export function fetchList(query) {
   })
 }
 
-export function fetchActiveGame() {
+export function fetchActiveTeams() {
   return request({
-    url: `http://127.0.0.1:8000/api/games/get_active_games/`,
+    url: `http://127.0.0.1:8000/api/teams/get_active_teams/`,
     method: 'get'
   })
 }
 
-export function fetchGame(id) {
+export function fetchTeam(id) {
   return request({
-    url: `http://127.0.0.1:8000/api/games/${id}/`,
+    url: `http://127.0.0.1:8000/api/teams/${id}/`,
     method: 'get',
     params: { id }
   })
 }
 
-export function createGame(data) {
+export function createTeam(data) {
   return request({
-    url: 'http://127.0.0.1:8000/api/games/',
+    url: 'http://127.0.0.1:8000/api/teams/',
     method: 'post',
     data
   })
 }
 
-export function updateGame(data) {
+export function updateTeam(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/games/${data.game_id}/`,
+    url: `http://127.0.0.1:8000/api/teams/${data.team_id}/`,
     method: 'put',
     data
   })
 }
 
-export function removeGame(data) {
+export function removeTeam(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/games/${data.game_id}/`,
+    url: `http://127.0.0.1:8000/api/teams/${data.team_id}/`,
     method: 'delete'
   })
 }

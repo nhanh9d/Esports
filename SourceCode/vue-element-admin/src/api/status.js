@@ -12,6 +12,13 @@ export function fetchList(query) {
   })
 }
 
+export function fetchActiveStatus() {
+  return request({
+    url: `http://127.0.0.1:8000/api/status/get_active_status/`,
+    method: 'get'
+  })
+}
+
 export function fetchStatus(id) {
   return request({
     url: `http://127.0.0.1:8000/api/status/${id}/`,

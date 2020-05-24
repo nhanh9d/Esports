@@ -12,6 +12,16 @@ export function fetchList(query) {
   })
 }
 
+export function fetchRegions() {
+  return request({
+    url: 'http://127.0.0.1:8000/api/region/get_active_regions/',
+    method: 'get',
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
+  })
+}
+
 export function fetchRegion(id) {
   return request({
     url: `http://127.0.0.1:8000/api/region/${id}/`,

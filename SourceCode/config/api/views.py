@@ -65,6 +65,12 @@ class StatusViewSet(viewsets.ModelViewSet):
         elif self.action == 'list' or self.action == 'destroy':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
+
+    @action(detail=False, methods=['GET'])
+    def get_active_status(self, request, pk=None):
+        status = Status.objects.filter(is_active=True).filter(is_delete=False).values('status_id', 'name')
+        serializer = self.get_serializer(status, many=True)
+        return Response(serializer.data)
     
 
 class RegionViewSet(viewsets.ModelViewSet):
@@ -81,6 +87,12 @@ class RegionViewSet(viewsets.ModelViewSet):
         elif self.action == 'list' or self.action == 'destroy':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
+
+    @action(detail=False, methods=['GET'])
+    def get_active_regions(self, request, pk=None):
+        regions = Region.objects.filter(is_active=True).filter(is_delete=False).values('region_id', 'name')
+        serializer = self.get_serializer(regions, many=True)
+        return Response(serializer.data)
     
 
 class GameViewSet(viewsets.ModelViewSet):
@@ -98,6 +110,12 @@ class GameViewSet(viewsets.ModelViewSet):
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
+    @action(detail=False, methods=['GET'])
+    def get_active_games(self, request, pk=None):
+        games = Game.objects.filter(is_active=True).filter(is_delete=False)
+        serializer = self.get_serializer(games, many=True)
+        return Response(serializer.data)
+
 class LeagueViewSet(viewsets.ModelViewSet):
     queryset = League.objects.all()
     serializer_class = LeagueSerializer
@@ -112,6 +130,12 @@ class LeagueViewSet(viewsets.ModelViewSet):
         elif self.action == 'list' or self.action == 'destroy':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
+
+    @action(detail=False, methods=['GET'])
+    def get_active_leagues(self, request, pk=None):
+        leagues = League.objects.filter(is_active=True).filter(is_delete=False)
+        serializer = self.get_serializer(leagues, many=True)
+        return Response(serializer.data)
 
 class TeamViewSet(viewsets.ModelViewSet):
     queryset = Team.objects.all()
@@ -129,7 +153,7 @@ class TeamViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
     @action(detail=False, methods=['GET'])
-    def get_active_team(self, request, pk=None):
+    def get_active_teams(self, request, pk=None):
         teams = Team.objects.filter(is_active=True).filter(is_delete=False)
         serializer = self.get_serializer(teams, many=True)
         return Response(serializer.data)
