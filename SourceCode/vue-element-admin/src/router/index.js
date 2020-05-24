@@ -314,6 +314,37 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/game',
+    component: Layout,
+    redirect: '/game/list',
+    name: 'Game',
+    meta: {
+      title: 'Game',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/game/create'),
+        name: 'CreateGame',
+        meta: { title: 'Create Game', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/game/edit'),
+        name: 'EditGame',
+        meta: { title: 'Edit Game', noCache: true, activeMenu: '/game/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/game/list'),
+        name: 'GameList',
+        meta: { title: 'Game List', icon: 'list' }
+      }
+    ]
+  },
 
   //{
   //  path: '/tab',

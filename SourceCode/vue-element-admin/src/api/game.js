@@ -3,7 +3,7 @@ import { getToken } from '@/utils/auth'
 
 export function fetchList(query) {
   return request({
-    url: 'http://127.0.0.1:8000/api/region/',
+    url: 'http://127.0.0.1:8000/api/games/',
     method: 'get',
     params: query,
     headers: {
@@ -12,33 +12,33 @@ export function fetchList(query) {
   })
 }
 
-export function fetchRegion(id) {
+export function fetchGame(id) {
   return request({
-    url: `http://127.0.0.1:8000/api/region/${id}/`,
+    url: `http://127.0.0.1:8000/api/games/${id}/`,
     method: 'get',
     params: { id }
   })
 }
 
-export function createRegion(data) {
+export function createGame(data) {
   return request({
-    url: 'http://127.0.0.1:8000/api/region/',
+    url: 'http://127.0.0.1:8000/api/games/',
     method: 'post',
     data
   })
 }
 
-export function updateRegion(data) {
+export function updateGame(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/region/${data.region_id}/`,
+    url: `http://127.0.0.1:8000/api/games/${data.game_id}/`,
     method: 'put',
     data
   })
 }
 
-export function removeRegion(data) {
+export function removeGame(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/region/${data.region_id}/`,
+    url: `http://127.0.0.1:8000/api/games/${data.game_id}/`,
     method: 'delete'
   })
 }

@@ -3,13 +3,13 @@
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="ID" width="180">
         <template slot-scope="scope">
-          <span>{{ scope.row.status_id }}</span>
+          <span>{{ scope.row.game_id }}</span>
         </template>
       </el-table-column>
 
       <el-table-column min-width="300px" label="Title">
         <template slot-scope="{row}">
-          <router-link :to="'/status/edit/'+row.status_id" class="link-type">
+          <router-link :to="'/game/edit/'+row.game_id" class="link-type">
             <span>{{ row.name }}</span>
           </router-link>
         </template>
@@ -29,7 +29,7 @@
 
       <el-table-column align="center" label="Actions" width="240">
         <template slot-scope="scope">
-          <router-link :to="'/status/edit/'+scope.row.status_id">
+          <router-link :to="'/game/edit/'+scope.row.game_id">
             <el-button type="primary" size="mini" icon="el-icon-edit">
               Edit
             </el-button>
@@ -46,12 +46,12 @@
 </template>
 
 <script>
-  import { fetchList, removeStatus } from '@/api/status'
+  import { fetchList, removeGame } from '@/api/game'
   import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
   import moment from 'moment'
 
   export default {
-    name: 'StatusList',
+    name: 'GameList',
     components: { Pagination },
     data() {
       return {
@@ -82,7 +82,7 @@
         })
       },
       handleDelete(row, index) {
-        removeStatus({status_id:row.status_id}).then(response => {
+        removeGame({game_id:row.game_id}).then(response => {
           this.$notify({
             title: 'Success',
             message: 'Delete Successfully',

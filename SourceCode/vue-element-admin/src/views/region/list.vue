@@ -46,7 +46,7 @@
 </template>
 
 <script>
-  import { fetchList, updateRegion } from '@/api/region'
+  import { fetchList, removeRegion } from '@/api/region'
   import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
   import moment from 'moment'
 
@@ -82,7 +82,7 @@
         })
       },
       handleDelete(row, index) {
-        updateRegion({region_id:row.region_id, name:row.name, is_active:row.is_active, is_delete:true}).then(response => {
+        removeRegion({region_id:row.region_id}).then(response => {
           this.$notify({
             title: 'Success',
             message: 'Delete Successfully',

@@ -35,3 +35,10 @@ export function updateStatus(data) {
     data
   })
 }
+
+export function removeStatus(data) {
+  return request({
+    url: `http://127.0.0.1:8000/api/status/${data.status_id}/`,
+    method: 'delete'
+  })
+}
