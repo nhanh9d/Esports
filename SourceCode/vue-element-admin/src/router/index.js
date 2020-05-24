@@ -252,6 +252,68 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/status',
+    component: Layout,
+    redirect: '/status/list',
+    name: 'Status',
+    meta: {
+      title: 'Status',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/status/create'),
+        name: 'CreateStatus',
+        meta: { title: 'Create Status', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/status/edit'),
+        name: 'EditStatus',
+        meta: { title: 'Edit Status', noCache: true, activeMenu: '/status/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/status/list'),
+        name: 'StatusList',
+        meta: { title: 'Status List', icon: 'list' }
+      }
+    ]
+  },
+  {
+    path: '/region',
+    component: Layout,
+    redirect: '/region/list',
+    name: 'Region',
+    meta: {
+      title: 'Region',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/region/create'),
+        name: 'CreateRegion',
+        meta: { title: 'Create Region', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/region/edit'),
+        name: 'EditRegion',
+        meta: { title: 'Edit Region', noCache: true, activeMenu: '/region/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/region/list'),
+        name: 'RegionList',
+        meta: { title: 'Region List', icon: 'list' }
+      }
+    ]
+  },
 
   //{
   //  path: '/tab',

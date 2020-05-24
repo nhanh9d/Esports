@@ -99,10 +99,10 @@ const actions = {
 
   // user edit
   edit({ commit }, postForm) {
-    const { email, password, first_name, last_name, telephone_number } = postForm
+    const { id, email, password, first_name, last_name, telephone_number } = postForm
     return new Promise((resolve, reject) => {
-      edit(email, password, first_name, last_name, telephone_number).then(() => {
-        resolve()
+      edit(id, email, password, first_name, last_name, telephone_number).then((data) => {
+        resolve(data)
       }).catch(error => {
         reject(error)
       })

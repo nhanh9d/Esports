@@ -111,6 +111,7 @@
   import { searchUser } from '@/api/remote-search'
 
   const defaultForm = {
+    id: undefined,
     email: '',
     password: '',
     first_name: '',
@@ -171,6 +172,7 @@
       fetchData(id) {
         getInfo(id).then(response => {
           this.postForm = response.data
+          this.postForm.id = id
 
           // just for test
           //this.postForm.title += `   Users Id:${this.postForm.id}`

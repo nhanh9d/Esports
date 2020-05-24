@@ -38,7 +38,7 @@ export function createArticle(data) {
 
 export function updateArticle(data) {
   return request({
-    url: 'http://127.0.0.1:8000/api/articles/',
+    url: `http://127.0.0.1:8000/api/articles/${data.article_id}/`,
     method: 'put',
     data
   })

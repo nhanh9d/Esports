@@ -25,9 +25,9 @@ export function create(email, password, first_name, last_name, telephone_number)
   })
 }
 
-export function edit(email, password, first_name, last_name, telephone_number) {
+export function edit(id, email, password, first_name, last_name, telephone_number) {
   return request({
-    url: 'http://127.0.0.1:8000/api/users/',
+    url: `http://127.0.0.1:8000/api/users/${id}`,
     method: 'put',
     data: {
       password,

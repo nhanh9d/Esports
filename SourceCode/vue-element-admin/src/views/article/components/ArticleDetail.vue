@@ -132,7 +132,7 @@
     },
     created() {
       if (this.isEdit) {
-        const article_id = this.$route.params && this.$route.params.article_id
+        const article_id = this.$route.params && this.$route.params.id
         this.fetchData(article_id)
       }
 

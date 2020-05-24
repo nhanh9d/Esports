@@ -98,6 +98,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -174,3 +175,7 @@ REST_FRAMEWORK = {
 }
 
 REST_USE_JWT = True
+
+#File Storage
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'FileServer')
+MEDIA_URL = '/fs/'

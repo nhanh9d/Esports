@@ -3,43 +3,40 @@
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="ID" width="180">
         <template slot-scope="scope">
-          <span>{{ scope.row.article_id }}</span>
+          <span>{{ scope.row.region_id }}</span>
         </template>
       </el-table-column>
 
       <el-table-column min-width="300px" label="Title">
         <template slot-scope="{row}">
-          <router-link :to="'/article/edit/'+row.article_id" class="link-type">
-            <span>{{ row.title }}</span>
+          <router-link :to="'/region/edit/'+row.region_id" class="link-type">
+            <span>{{ row.name }}</span>
           </router-link>
         </template>
       </el-table-column>
 
-      <el-table-column width="180px" align="center" label="Display Time">
+      <el-table-column width="180px" align="center" label="Active">
         <template slot-scope="scope">
-          <span>{{ format_date(scope.row.display_time) }}</span>
+          <span>{{ scope.row.is_active }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180px" align="center" label="Created Time">
+      <el-table-column width="180px" align="center" label="Deleted">
         <template slot-scope="scope">
-          <span>{{ format_date(scope.row.created_date) }}</span>
+          <span>{{ scope.row.is_delete }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="100px" label="Importance">
+      <el-table-column align="center" label="Actions" width="240">
         <template slot-scope="scope">
-          <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon" />
-        </template>
-      </el-table-column>
-
-      <el-table-column align="center" label="Actions" width="120">
-        <template slot-scope="scope">
-          <router-link :to="'/article/edit/'+scope.row.article_id">
-            <el-button type="primary" size="small" icon="el-icon-edit">
+          <router-link :to="'/region/edit/'+scope.row.region_id">
+            <el-button type="primary" size="mini" icon="el-icon-edit">
               Edit
             </el-button>
           </router-link>
+          <el-button v-if="!scope.row.is_delete" size="mini" type="danger" icon="el-icon-delete" @click="handleDelete(scope.row, scope.$index)">
+            Delete
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -49,23 +46,13 @@
 </template>
 
 <script>
-  import { fetchList } from '@/api/article'
+  import { fetchList, updateRegion } from '@/api/region'
   import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
   import moment from 'moment'
 
   export default {
-    name: 'ArticleList',
+    name: 'RegionList',
     components: { Pagination },
-    filters: {
-      statusFilter(status) {
-        const statusMap = {
-          published: 'success',
-          draft: 'info',
-          deleted: 'danger'
-        }
-        return statusMap[status]
-      }
-    },
     data() {
       return {
         list: null,
@@ -92,6 +79,19 @@
           this.list = response.data.results
           this.total = response.data.count
           this.listLoading = false
+        })
+      },
+      handleDelete(row, index) {
+        updateRegion({region_id:row.region_id, name:row.name, is_active:row.is_active, is_delete:true}).then(response => {
+          this.$notify({
+            title: 'Success',
+            message: 'Delete Successfully',
+            type: 'success',
+            duration: 2000
+          })
+          this.list.splice(index, 1)
+        }).catch(err => {
+          console.log(err)
         })
       }
     }

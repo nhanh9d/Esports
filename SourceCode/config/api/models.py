@@ -25,19 +25,28 @@ class UserProfile(models.Model):
 class Status(models.Model):
     status_id = models.AutoField(primary_key=True) #id
     name = models.CharField(max_length=256, blank=True,db_index=True) #tên
+
     is_active = models.BooleanField(default=True) #có dùng hay không
+    is_delete = models.BooleanField(default=False) #đã xóa hay chưa
     
     created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True) #ngày tạo
     updated_date = models.DateTimeField(auto_now=True, blank=True, null=True) #ngày cập nhật
 
+    def __str__(self):
+        return self.name
+
 class Region(models.Model):
     region_id = models.AutoField(primary_key=True) #id
     name = models.CharField(max_length=256, blank=True,db_index=True) #tên khu vực
-
-    status = models.ForeignKey(Status, on_delete=models.CASCADE) #trạng thái
+    
+    is_active = models.BooleanField(default=True) #có dùng hay không
+    is_delete = models.BooleanField(default=False) #đã xóa hay chưa
 
     created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True) #ngày tạo
     updated_date = models.DateTimeField(auto_now=True, blank=True, null=True) #ngày cập nhật
+
+    def __str__(self):
+        return self.name
 
 # Bảng tin tức
 class Article(models.Model):
@@ -49,24 +58,31 @@ class Article(models.Model):
     image_uri = models.URLField(blank=True) #đường dẫn ảnh
     display_time = models.DateTimeField() #thời gian hiển thị
     importance = models.SmallIntegerField() #mức độ quan trọng
-
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, blank=True, null=True) #trạng thái, khóa ngoại đến bảng trạng thái
+    
+    is_active = models.BooleanField(default=True) #có dùng hay không
+    is_delete = models.BooleanField(default=False) #đã xóa hay chưa
 
     created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True) #ngày tạo
     updated_date = models.DateTimeField(auto_now=True, blank=True, null=True) #ngày cập nhật
 
+#Bảng game
 class Game(models.Model):
     game_id = models.AutoField(primary_key=True) #id
     name = models.CharField(max_length=256,db_index=True) #tên trò chơi
-    uri_name = models.CharField(max_length=256,db_index=True) #tên trò chơi trên thanh url
+    uri_name = models.CharField(max_length=256,db_index=True,blank=True) #tên trò chơi trên thanh url
     description = models.CharField(max_length=4000) #mô tả
     icon_uri = models.URLField(blank=True) #icon của game
 
-    status = models.ForeignKey(Status, on_delete=models.CASCADE) #trạng thái, khóa ngoại đến bảng trạng thái
+    is_active = models.BooleanField(default=True) #có dùng hay không
+    is_delete = models.BooleanField(default=False) #đã xóa hay chưa
 
     created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True) #ngày tạo
     updated_date = models.DateTimeField(auto_now=True, blank=True, null=True) #ngày cập nhật
 
+    def __str__(self):
+        return self.name
+
+#Bảng giải đấu
 class League(models.Model):
     league_id = models.AutoField(primary_key=True) #id
     name = models.CharField(max_length=256,db_index=True) #tên giải đấu
@@ -79,31 +95,45 @@ class League(models.Model):
 
     #format = models.ForeignKey(Format, on_delete=models.CASCADE)
     #sponsor = models.ForeignKey(Sponsor, on_delete=models.CASCADE)
-    status = models.ForeignKey(Status, on_delete=models.CASCADE) #trạng thái của giải đấu, khóa ngoại đến bảng trạng thái
+    is_active = models.BooleanField(default=True) #có dùng hay không
+    is_delete = models.BooleanField(default=False) #đã xóa hay chưa
+
+    league_status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='league_status', blank=True, null=True) #trạng thái của giải đấu, khóa ngoại đến bảng trạng thái
+    league_game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='league_game', blank=True, null=True) #trạng thái của giải đấu, khóa ngoại đến bảng trạng thái
 
     created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True) #ngày tạo
     updated_date = models.DateTimeField(auto_now=True, blank=True, null=True) #ngày cập nhật
 
+    def __str__(self):
+        return self.name
+
+#Bảng đội thi đấu
 class Team(models.Model):
     team_id = models.AutoField(primary_key=True) #id
     name = models.CharField(max_length=256,db_index=True) #tên đội
     short_name = models.CharField(max_length=256, blank=True,db_index=True) #tên viết tắt đội
     uri_name = models.CharField(max_length=256) #tên trên thanh url
     description = models.CharField(max_length=4000) #mô tả
-    world_rank = models.IntegerField() #xếp hạng thế giới
-    region_rank = models.IntegerField() #xếp hạng khu vực
-    total_earnings = models.DecimalField(max_digits=19, decimal_places=10) #tổng số tiền kiếm được
-    win_rate = models.DecimalField(max_digits=19, decimal_places=10) #tỉ lệ thắng (%)
+    world_rank = models.IntegerField(blank=True, null=True) #xếp hạng thế giới
+    region_rank = models.IntegerField(blank=True, null=True) #xếp hạng khu vực
+    total_earnings = models.DecimalField(max_digits=19, decimal_places=2) #tổng số tiền kiếm được
+    win_rate = models.DecimalField(max_digits=19, decimal_places=6) #tỉ lệ thắng (%)
     starting_date = models.DateTimeField() #Ngày thành lập
     banner_in_list_uri = models.URLField(blank=True) #ảnh đội hiển thị trong list
-    banner_in_detail_uri = models.URLField(blank=True) #ảnh đội hiển thị trong chi tiết
+    banner_in_detail_uri = models.URLField(blank=True) #ảnh đội hiển thị trong chi tiếtư
 
-    region = models.ForeignKey(Region, on_delete=models.CASCADE, blank=True, null=True)
-    status = models.ForeignKey(Status, on_delete=models.CASCADE) #trạng thái của đội
+    is_active = models.BooleanField(default=True) #có dùng hay không
+    is_delete = models.BooleanField(default=False) #đã xóa hay chưa
+
+    team_region = models.ForeignKey(Region, on_delete=models.CASCADE, blank=True, null=True, related_name='team_region')
 
     created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True) #ngày tạo
     updated_date = models.DateTimeField(auto_now=True, blank=True, null=True) #ngày cập nhật
 
+    def __str__(self):
+        return self.name
+
+#Bảng trận đấu
 class Match(models.Model):
     match_id = models.AutoField(primary_key=True) #id
     uri_name = models.CharField(max_length=256,db_index=True) #tên trên thanh url
@@ -114,6 +144,12 @@ class Match(models.Model):
     #best_of = models.ForeignKey(BestOf, on_delete=models.CASCADE)
     #match_type = models.ForeignKey(MatchType, on_delete=models.CASCADE)
     status = models.ForeignKey(Status, on_delete=models.CASCADE) #trạng thái của trận đấu
+    
+    is_active = models.BooleanField(default=True) #có dùng hay không
+    is_delete = models.BooleanField(default=False) #đã xóa hay chưa
+
+    match_status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='match_status', blank=True, null=True) #trạng thái của trận đấu, khóa ngoại đến bảng trạng thái
+    match_league = models.ForeignKey(League, on_delete=models.CASCADE, related_name='match_league', blank=True, null=True) #giải đấu của trận đấu, khóa ngoại đến bảng trạng thái
 
     created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True) #ngày tạo
     updated_date = models.DateTimeField(auto_now=True, blank=True, null=True) #ngày cập nhật

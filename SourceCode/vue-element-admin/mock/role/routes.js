@@ -388,6 +388,36 @@ export const asyncRoutes = [
         meta: { title: 'Article List', icon: 'list' }
       }
     ]
+  {
+    path: '/status',
+    component: 'layout/Layout',
+    redirect: '/status/list',
+    name: 'Status',
+    meta: {
+      title: 'Status',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: '/views/status/create',
+        name: 'CreateStatus',
+        meta: { title: 'Create Status', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: '/views/status/edit',
+        name: 'EditStatus',
+        meta: { title: 'Edit Status', noCache: true, activeMenu: '/status/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: '/views/status/list',
+        name: 'StatusList',
+        meta: { title: 'Status List', icon: 'list' }
+      }
+    ]
   },
 
   {
