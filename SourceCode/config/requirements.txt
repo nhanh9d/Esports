@@ -5,4 +5,4 @@ djangorestframework-jwt
 django-cors-headers
 numpy
 #cx_Oracle
-django
+django==2.2
