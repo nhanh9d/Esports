@@ -57,18 +57,18 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    'localhost:8080',
-    'localhost',
-    '127.0.0.1:8080',
-    'localhost:9527',
+    'http://localhost:8080',
+    'http://localhost',
+    'http://127.0.0.1:8080',
+    'http://localhost:9527',
     'http://localhost:9527'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'localhost:8080',
-    'localhost',
-    '127.0.0.1:8080',
-    'localhost:9527',
+    'http://localhost:8080',
+    'http://localhost',
+    'http://127.0.0.1:8080',
+    'http://localhost:9527',
     'http://localhost:9527'
 ]
 
