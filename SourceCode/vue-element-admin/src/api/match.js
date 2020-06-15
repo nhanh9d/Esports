@@ -21,6 +21,7 @@ export function fetchMatches(id) {
 }
 
 export function createMatches(data) {
+	console.log(data)
   return request({
     url: 'http://127.0.0.1:8000/api/matches/',
     method: 'post',
