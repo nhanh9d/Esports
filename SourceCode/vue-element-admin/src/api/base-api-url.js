@@ -1,1 +1,2 @@
-export default baseApiUrl = 'http://127.0.0.1:8000/api/'
+const baseApiUrl = 'http://127.0.0.1:8000/api/'
+export default baseApiUrl
