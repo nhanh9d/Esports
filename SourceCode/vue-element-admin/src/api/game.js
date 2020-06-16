@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 import { getToken } from '@/utils/auth'
-import baseApiUrl from '@/api/baseurl'
+import baseApiUrl from '@/api/base-api-url'
 
 export function fetchList(query) {
   return request({
