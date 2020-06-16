@@ -1,9 +1,10 @@
 import request from '@/utils/request'
 import { getToken } from '@/utils/auth'
+import baseApiUrl from '@/api/baseurl'
 
 export function fetchList(query) {
   return request({
-    url: 'http://127.0.0.1:8000/api/games/',
+    url: `${baseApiUrl}games/`,
     method: 'get',
     params: query,
     headers: {
@@ -14,38 +15,53 @@ export function fetchList(query) {
 
 export function fetchActiveGame() {
   return request({
-    url: `http://127.0.0.1:8000/api/games/get_active_games/`,
-    method: 'get'
+    url: `${baseApiUrl}games/get_active_games/`,
+    method: 'get',
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function fetchGame(id) {
   return request({
-    url: `http://127.0.0.1:8000/api/games/${id}/`,
+    url: `${baseApiUrl}games/${id}/`,
     method: 'get',
-    params: { id }
+    params: { id },
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function createGame(data) {
   return request({
-    url: 'http://127.0.0.1:8000/api/games/',
+    url: `${baseApiUrl}games/`,
     method: 'post',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function updateGame(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/games/${data.game_id}/`,
+    url: `${baseApiUrl}games/${data.game_id}/`,
     method: 'put',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function removeGame(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/games/${data.game_id}/`,
-    method: 'delete'
+    url: `${baseApiUrl}games/${data.game_id}/`,
+    method: 'delete',
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }

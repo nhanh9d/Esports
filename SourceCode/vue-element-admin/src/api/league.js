@@ -1,9 +1,10 @@
 import request from '@/utils/request'
 import { getToken } from '@/utils/auth'
+import baseApiUrl from '@/api/base-api-url'
 
 export function fetchList(query) {
   return request({
-    url: 'http://127.0.0.1:8000/api/leagues/',
+    url: `${baseApiUrl}leagues/`,
     method: 'get',
     params: query,
     headers: {
@@ -14,38 +15,53 @@ export function fetchList(query) {
 
 export function fetchActiveLeagues() {
   return request({
-    url: `http://127.0.0.1:8000/api/leagues/get_active_leagues/`,
-    method: 'get'
+    url: `${baseApiUrl}leagues/get_active_leagues/`,
+    method: 'get',
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function fetchLeagues(id) {
   return request({
-    url: `http://127.0.0.1:8000/api/leagues/${id}/`,
+    url: `${baseApiUrl}leagues/${id}/`,
     method: 'get',
-    params: { id }
+    params: { id },
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function createLeagues(data) {
   return request({
-    url: 'http://127.0.0.1:8000/api/leagues/',
+    url: `${baseApiUrl}leagues/`,
     method: 'post',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function updateLeagues(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/leagues/${data.team_id}/`,
+    url: `${baseApiUrl}leagues/${data.team_id}/`,
     method: 'put',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function removeLeagues(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/leagues/${data.team_id}/`,
-    method: 'delete'
+    url: `${baseApiUrl}leagues/${data.team_id}/`,
+    method: 'delete',
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }

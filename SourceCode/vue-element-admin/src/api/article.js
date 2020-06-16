@@ -1,9 +1,10 @@
 import request from '@/utils/request'
 import { getToken } from '@/utils/auth'
+import baseApiUrl from '@/api/base-api-url'
 
 export function fetchList(query) {
   return request({
-    url: 'http://127.0.0.1:8000/api/articles/',
+    url: `${baseApiUrl}articles/`,
     method: 'get',
     params: query,
     headers: {
@@ -14,9 +15,12 @@ export function fetchList(query) {
 
 export function fetchArticle(id) {
   return request({
-    url: `http://127.0.0.1:8000/api/articles/${id}/`,
+    url: `${baseApiUrl}articles/${id}/`,
     method: 'get',
-    params: { id }
+    params: { id },
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
@@ -24,22 +28,31 @@ export function fetchPv(pv) {
   return request({
     url: '/vue-element-admin/article/pv',
     method: 'get',
-    params: { pv }
+    params: { pv },
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function createArticle(data) {
   return request({
-    url: 'http://127.0.0.1:8000/api/articles/',
+    url: `${baseApiUrl}articles/`,
     method: 'post',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function updateArticle(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/articles/${data.article_id}/`,
+    url: `${baseApiUrl}articles/${data.article_id}/`,
     method: 'put',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }

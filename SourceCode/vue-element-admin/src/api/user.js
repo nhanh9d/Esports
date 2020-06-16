@@ -1,17 +1,21 @@
 import request from '@/utils/request'
 import { getToken } from '@/utils/auth'
+import baseApiUrl from '@/api/base-api-url'
 
 export function login(data) {
   return request({
-    url: 'http://127.0.0.1:8000/api/auth/login/',
+    url: `${baseApiUrl}auth/login/`,
     method: 'post',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function create(email, password, first_name, last_name, telephone_number) {
   return request({
-    url: 'http://127.0.0.1:8000/api/users/',
+    url: `${baseApiUrl}users/`,
     method: 'post',
     data: {
       email,
@@ -21,13 +25,16 @@ export function create(email, password, first_name, last_name, telephone_number)
       profile: {
         telephoneNumber: telephone_number
       }
+    },
+    headers: {
+      "Authorization": "Bearer " + getToken()
     }
   })
 }
 
 export function edit(id, email, password, first_name, last_name, telephone_number) {
   return request({
-    url: `http://127.0.0.1:8000/api/users/${id}`,
+    url: `${baseApiUrl}users/${id}`,
     method: 'put',
     data: {
       password,
@@ -36,13 +43,16 @@ export function edit(id, email, password, first_name, last_name, telephone_numbe
       profile: {
         telephoneNumber: telephone_number
       }
+    },
+    headers: {
+      "Authorization": "Bearer " + getToken()
     }
   })
 }
 
 export function getInfo(id) {
   return request({
-    url: `http://127.0.0.1:8000/api/users/${id}/`,
+    url: `${baseApiUrl}users/${id}/`,
     method: 'get',
     headers: {
       "Authorization": "Bearer " + getToken()
@@ -52,14 +62,17 @@ export function getInfo(id) {
 
 export function logout() {
   return request({
-    url: 'http://127.0.0.1:8000/api/auth/logout/',
-    method: 'post'
+    url: `${baseApiUrl}auth/logout/`,
+    method: 'post',
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function fetchList(query) {
   return request({
-    url: 'http://127.0.0.1:8000/api/users/',
+    url: `${baseApiUrl}users/`,
     method: 'get',
     params: query,
     headers: {

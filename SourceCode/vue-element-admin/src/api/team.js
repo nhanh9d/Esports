@@ -1,9 +1,10 @@
 import request from '@/utils/request'
 import { getToken } from '@/utils/auth'
+import baseApiUrl from '@/api/base-api-url'
 
 export function fetchList(query) {
   return request({
-    url: 'http://127.0.0.1:8000/api/teams/',
+    url: `${baseApiUrl}teams/`,
     method: 'get',
     params: query,
     headers: {
@@ -14,38 +15,53 @@ export function fetchList(query) {
 
 export function fetchActiveTeams() {
   return request({
-    url: `http://127.0.0.1:8000/api/teams/get_active_teams/`,
-    method: 'get'
+    url: `${baseApiUrl}teams/get_active_teams/`,
+    method: 'get',
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function fetchTeam(id) {
   return request({
-    url: `http://127.0.0.1:8000/api/teams/${id}/`,
+    url: `${baseApiUrl}teams/${id}/`,
     method: 'get',
-    params: { id }
+    params: { id },
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function createTeam(data) {
   return request({
-    url: 'http://127.0.0.1:8000/api/teams/',
+    url: `${baseApiUrl}teams/`,
     method: 'post',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function updateTeam(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/teams/${data.team_id}/`,
+    url: `${baseApiUrl}teams/${data.team_id}/`,
     method: 'put',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function removeTeam(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/teams/${data.team_id}/`,
-    method: 'delete'
+    url: `${baseApiUrl}teams/${data.team_id}/`,
+    method: 'delete',
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
