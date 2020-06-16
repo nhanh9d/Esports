@@ -4,7 +4,7 @@ import baseApiUrl from '@/api/base-api-url'
 
 export function getRoutes() {
   return request({
-    url: '/vue-element-admin/routes',
+    url: `${baseApiUrl}/routes`,
     method: 'get',
     headers: {
       "Authorization": "Bearer " + getToken()
@@ -14,7 +14,7 @@ export function getRoutes() {
 
 export function getRoles() {
   return request({
-    url: '/vue-element-admin/roles',
+    url: `${baseApiUrl}/roles`,
     method: 'get',
     headers: {
       "Authorization": "Bearer " + getToken()
@@ -24,7 +24,7 @@ export function getRoles() {
 
 export function addRole(data) {
   return request({
-    url: '/vue-element-admin/role',
+    url: `${baseApiUrl}/role`,
     method: 'post',
     data,
     headers: {
@@ -35,7 +35,7 @@ export function addRole(data) {
 
 export function updateRole(id, data) {
   return request({
-    url: `/vue-element-admin/role/${id}`,
+    url: `${baseApiUrl}/role/${id}`,
     method: 'put',
     data,
     headers: {
@@ -46,7 +46,7 @@ export function updateRole(id, data) {
 
 export function deleteRole(id) {
   return request({
-    url: `/vue-element-admin/role/${id}`,
+    url: `${baseApiUrl}/role/${id}`,
     method: 'delete',
     headers: {
       "Authorization": "Bearer " + getToken()
