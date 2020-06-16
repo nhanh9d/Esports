@@ -1,9 +1,10 @@
 import request from '@/utils/request'
 import { getToken } from '@/utils/auth'
+import baseApiUrl from '@/api/base-api-url'
 
 export function fetchList(query) {
   return request({
-    url: 'http://127.0.0.1:8000/api/status/',
+    url: `${baseApiUrl}status/`,
     method: 'get',
     params: query,
     headers: {
@@ -14,38 +15,53 @@ export function fetchList(query) {
 
 export function fetchActiveStatus() {
   return request({
-    url: `http://127.0.0.1:8000/api/status/get_active_status/`,
-    method: 'get'
+    url: `${baseApiUrl}status/get_active_status/`,
+    method: 'get',
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function fetchStatus(id) {
   return request({
-    url: `http://127.0.0.1:8000/api/status/${id}/`,
+    url: `${baseApiUrl}status/${id}/`,
     method: 'get',
-    params: { id }
+    params: { id },
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function createStatus(data) {
   return request({
-    url: 'http://127.0.0.1:8000/api/status/',
+    url: `${baseApiUrl}status/`,
     method: 'post',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function updateStatus(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/status/${data.status_id}/`,
+    url: `${baseApiUrl}status/${data.status_id}/`,
     method: 'put',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function removeStatus(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/status/${data.status_id}/`,
-    method: 'delete'
+    url: `${baseApiUrl}status/${data.status_id}/`,
+    method: 'delete',
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }

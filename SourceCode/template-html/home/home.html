@@ -828,7 +828,7 @@
   crossorigin="anonymous"></script>
     <script>
 		$.ajax({
-			url:'https://esportapi.helisoft.vn/api/games/'
+			url:'http://127.0.0.1:8000/api/games/'
 		}).done((response)=>{
 			console.log(response);
 			for(var i = 0; i < response.results.length; i++){
@@ -838,27 +838,29 @@
 			}
 		});
 		$.ajax({
-			url:'https://esportapi.helisoft.vn/api/leagues/'
+			url:'http://127.0.0.1:8000/api/leagues/'
 		}).done((response)=>{
 			console.log(response);
 			for(var i = 0; i < response.results.length; i++){
-				var league = response.results[i];
-				/* $('#bannerSet').append(`<div class="large-5 columns">
-											<div class="row">
-												<a href="${league.uri_name}">
-													<i class="event-icon icon-dota2"></i> ${league.name}
-												</a>
+				if(i<3){
+					var league = response.results[i];
+					/* $('#bannerSet').append(`<div class="large-5 columns">
+												<div class="row">
+													<a href="${league.uri_name}">
+														<i class="event-icon icon-dota2"></i> ${league.name}
+													</a>
+												</div>
 											</div>
-										</div>
-									`); */
-				$('#bannerSet').append(`<div class="large-5 columns">
-											<div class="row">
-												<a href="/league/league.html">
-													<i class="event-icon icon-dota2"></i> ${league.name}
-												</a>
+										`); */
+					$('#bannerSet').append(`<div class="large-5 columns">
+												<div class="row">
+													<a href="/league/league.html">
+														<i class="event-icon icon-dota2"></i> ${league.name}
+													</a>
+												</div>
 											</div>
-										</div>
-									`);
+										`);
+				}	
 			}
 		});
 	</script>

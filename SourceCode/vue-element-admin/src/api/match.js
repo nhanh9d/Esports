@@ -1,44 +1,58 @@
 import request from '@/utils/request'
 import { getToken } from '@/utils/auth'
+import baseApiUrl from '@/api/base-api-url'
 
 export function fetchList(query) {
   return request({
-    url: 'http://127.0.0.1:8000/api/matches/',
+    url: `${baseApiUrl}matches/`,
     method: 'get',
     params: query,
     headers: {
-      "Authorization": "Bearer " + getToken()
+      "Authorization": `Bearer ${getToken()}`
     }
   })
 }
 
 export function fetchMatches(id) {
   return request({
-    url: `http://127.0.0.1:8000/api/matches/${id}/`,
+    url: `${baseApiUrl}matches/${id}/`,
     method: 'get',
-    params: { id }
+    params: { id },
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function createMatches(data) {
+	console.log(data)
   return request({
-    url: 'http://127.0.0.1:8000/api/matches/',
+    url: `${baseApiUrl}matches/`,
     method: 'post',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function updateMatches(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/matches/${data.team_id}/`,
+    url: `${baseApiUrl}matches/${data.team_id}/`,
     method: 'put',
-    data
+    data,
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
 
 export function removeMatches(data) {
   return request({
-    url: `http://127.0.0.1:8000/api/matches/${data.team_id}/`,
-    method: 'delete'
+    url: `${baseApiUrl}matches/${data.team_id}/`,
+    method: 'delete',
+    headers: {
+      "Authorization": "Bearer " + getToken()
+    }
   })
 }
