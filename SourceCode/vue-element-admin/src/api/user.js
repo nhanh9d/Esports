@@ -1,6 +1,7 @@
 import request from '@/utils/request'
 import { getToken } from '@/utils/auth'
 import baseApiUrl from '@/api/base-api-url'
+console.log(baseApiUrl)
 
 export function login(data) {
   return request({

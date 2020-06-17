@@ -31,10 +31,6 @@
 </template>
 
 <script>
-  import Tinymce from '@/components/Tinymce'
-  import Upload from '@/components/Upload/SingleImage3'
-  import MDinput from '@/components/MDinput'
-  import Sticky from '@/components/Sticky'
   import { fetchGame, createGame, updateGame } from '@/api/game'
 
   const defaultForm = {
@@ -48,7 +44,7 @@
 
   export default {
     name: 'GameDetail',
-    components: { Tinymce, MDinput, Upload, Sticky },
+    components: { },
     props: {
       isEdit: {
         type: Boolean,

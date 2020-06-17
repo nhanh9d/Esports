@@ -63,11 +63,7 @@
   import Upload from '@/components/Upload/SingleImage3'
   import MDinput from '@/components/MDinput'
   import Sticky from '@/components/Sticky'
-  import { validURL } from '@/utils/validate'
   import { fetchArticle, createArticle, updateArticle } from '@/api/article'
-  import { searchUser } from '@/api/remote-search'
-  import Warning from './Warning'
-  import { CommentDropdown, PlatformDropdown, SourceUrlDropdown } from './Dropdown'
 
   const defaultForm = {
     status: 'draft',

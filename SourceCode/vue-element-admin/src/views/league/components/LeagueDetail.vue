@@ -70,14 +70,9 @@
 </template>
 
 <script>
-  import Tinymce from '@/components/Tinymce'
   import Upload from '@/components/Upload/SingleImage3'
-  import MDinput from '@/components/MDinput'
-  import Sticky from '@/components/Sticky'
-  import { validURL } from '@/utils/validate'
   import { fetchLeagues, createLeagues, updateLeagues } from '@/api/league'
-  import { searchUser } from '@/api/remote-search'
-  import { StatusDropdown, GameDropdown, SourceUrlDropdown } from './Dropdown'
+  import { StatusDropdown, GameDropdown } from './Dropdown'
 
   const defaultForm = {
     league_id: undefined,
@@ -96,7 +91,7 @@
 
   export default {
     name: 'LeagueDetail',
-    components: { Tinymce, MDinput, Upload, Sticky, StatusDropdown, GameDropdown },
+    components: { Upload, StatusDropdown, GameDropdown },
     props: {
       isEdit: {
         type: Boolean,

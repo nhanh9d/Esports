@@ -23,10 +23,6 @@
 </template>
 
 <script>
-  import Tinymce from '@/components/Tinymce'
-  import Upload from '@/components/Upload/SingleImage3'
-  import MDinput from '@/components/MDinput'
-  import Sticky from '@/components/Sticky'
   import { fetchStatus, createStatus, updateStatus } from '@/api/status'
 
   const defaultForm = {
@@ -38,7 +34,7 @@
 
   export default {
     name: 'StatusDetail',
-    components: { Tinymce, MDinput, Upload, Sticky },
+    components: { },
     props: {
       isEdit: {
         type: Boolean,

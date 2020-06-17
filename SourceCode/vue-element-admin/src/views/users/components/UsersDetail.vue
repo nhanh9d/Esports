@@ -104,11 +104,8 @@
 </template>
 
 <script>
-  import Upload from '@/components/Upload/SingleImage3'
   import MDinput from '@/components/MDinput'
-  import { validURL } from '@/utils/validate'
   import { getInfo } from '@/api/user'
-  import { searchUser } from '@/api/remote-search'
 
   const defaultForm = {
     id: undefined,
@@ -128,7 +125,8 @@
         default: false
       },
       idEdit: {
-        type: Number
+        type: Number,
+        default: -1
       }
     },
     data() {

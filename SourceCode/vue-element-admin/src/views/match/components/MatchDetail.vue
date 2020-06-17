@@ -66,10 +66,6 @@
 </template>
 
 <script>
-  import Tinymce from '@/components/Tinymce'
-  import Upload from '@/components/Upload/SingleImage3'
-  import MDinput from '@/components/MDinput'
-  import Sticky from '@/components/Sticky'
   import { fetchMatches, createMatches, updateMatches } from '@/api/match'
   import { StatusDropdown, LeagueDropdown, TeamLeftDropdown, TeamRightDropdown } from './Dropdown'
 
@@ -87,7 +83,7 @@
 
   export default {
     name: 'MatchDetail',
-    components: { Tinymce, MDinput, Upload, Sticky, StatusDropdown, LeagueDropdown, TeamLeftDropdown, TeamRightDropdown },
+    components: { StatusDropdown, LeagueDropdown, TeamLeftDropdown, TeamRightDropdown },
     props: {
       isEdit: {
         type: Boolean,

@@ -98,14 +98,9 @@
 </template>
 
 <script>
-  import Tinymce from '@/components/Tinymce'
   import Upload from '@/components/Upload/SingleImage3'
-  import MDinput from '@/components/MDinput'
-  import Sticky from '@/components/Sticky'
-  import { validURL } from '@/utils/validate'
   import { fetchTeam, createTeam, updateTeam } from '@/api/team'
-  import { searchUser } from '@/api/remote-search'
-  import { RegionDropdown, PlatformDropdown, SourceUrlDropdown } from './Dropdown'
+  import { RegionDropdown } from './Dropdown'
 
   const defaultForm = {
     team_id: undefined,
@@ -127,7 +122,7 @@
 
   export default {
     name: 'TeamDetail',
-    components: { Tinymce, MDinput, Upload, Sticky, RegionDropdown },
+    components: { Upload, RegionDropdown },
     props: {
       isEdit: {
         type: Boolean,
