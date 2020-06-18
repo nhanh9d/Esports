@@ -1075,10 +1075,11 @@ article img {
 		width: 20%;
 	}
 }
-@media print, screen and (min-width: 64em)
+@media print, screen and (min-width: 64em){
 .grid-x>.large-auto {
     flex: 1 1 0px;
     width: auto;
+}
 }
 /*menu*/
 .menu {
@@ -1107,13 +1108,14 @@ article img {
     background: #1779ba;
     color: #fcfcfc;
 }
-@media print, screen and (min-width: 64em)
+@media print, screen and (min-width: 64em){
 .menu.large-horizontal {
     flex-wrap: wrap;
     flex-direction: row;
 }
 .menu-centered>.menu {
     justify-content: center;
+}
 }
 
 /*apex*/
@@ -1134,18 +1136,21 @@ article img {
 .apex a {
     color: #fcfcfc;
 }
-@media print, screen and (min-width: 64em)
+@media print, screen and (min-width: 64em){
 .grid-x>.large-auto {
     flex: 1 1 0px;
     width: auto;
 }
-@media print, screen and (min-width: 64em)
+}
+@media print, screen and (min-width: 64em){
 .large-text-left {
     text-align: left;
 }
-@media print, screen and (min-width: 64em)
+}
+@media print, screen and (min-width: 64em){
 .grid-x>.large-shrink {
     width: auto;
+}
 }
 .apex .apex-top i {
     font-size: 1.154rem;
