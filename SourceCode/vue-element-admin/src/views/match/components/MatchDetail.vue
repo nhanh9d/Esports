@@ -75,12 +75,12 @@
 
   const defaultForm = {
     match_id: undefined,
-    uri_name: null,
-    starting_date: null,
-    team_left: null,
-    team_right: null,
-    match_status: null,
-    match_league: null,
+    uri_name: undefined,
+    starting_date: undefined,
+    team_left: undefined,
+    team_right: undefined,
+    match_status: undefined,
+    match_league: undefined,
     is_active: true,
     is_delete: false
   }
@@ -93,6 +93,9 @@
         type: Boolean,
         default: false
       }
+    },
+    mounted() {
+
     },
     data() {
       const validateRequire = (rule, value, callback) => {
@@ -267,7 +270,10 @@
     border-radius: 0px;
     border-bottom: 1px solid #bfcbd9;
   }
+
   }
 
-  .el-form-item__label{text-align:left}
+  .el-form-item__label {
+    text-align: left
+  }
 </style>

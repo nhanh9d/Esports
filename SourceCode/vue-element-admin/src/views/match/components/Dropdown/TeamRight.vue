@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="value" placeholder="Choose Team" @change="onTeamRightChange">
+  <el-select v-model="value" placeholder="Choose Team Right" @change="onTeamRightChange">
     <el-option v-for="item in options"
                :key="item.team_id"
                :label="item.name"

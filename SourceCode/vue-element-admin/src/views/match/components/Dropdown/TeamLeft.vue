@@ -1,9 +1,9 @@
 <template>
   <el-select v-model="value" placeholder="Choose Team Left" @change="onTeamLeftChange">
     <el-option v-for="item in options"
-               :key="item.game_id"
+               :key="item.team_id"
                :label="item.name"
-               :value="item.game_id">
+               :value="item.team_id">
     </el-option>
   </el-select>
 </template>
@@ -11,8 +11,8 @@
 <script>
   import { fetchActiveTeams } from '@/api/team'
   const options = [{
-          game_id: '-1',
-          name: 'No game'
+          team_id: '-1',
+          name: 'No team'
         }]
   export default {
     data() {
@@ -24,7 +24,6 @@
     props: ['parentValue'],
     created() {
       this.fetchData()
-      console.log(this.parentValue)
     },
     methods: {
       fetchData() {

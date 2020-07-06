@@ -15,7 +15,7 @@ export function fetchList(query) {
 
 export function fetchRegions() {
   return request({
-    url: '${baseApiUrl}region/get_active_regions/',
+    url: `${baseApiUrl}region/get_active_regions/`,
     method: 'get',
     headers: {
       "Authorization": "Bearer " + getToken()
