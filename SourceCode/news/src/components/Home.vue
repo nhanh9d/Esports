@@ -53,16 +53,16 @@
 
 
                             <article class="news-post display-vertical has-thumbnail" v-for="news in stringToDate(topNews)" :key="news.article_id">
-                                <a class="post-thumbnail" :href="`/news/${news.article_id}`">
-                                    <img alt="Fnatic take another win for SEA at ESL One Birmingham 2020 "
-                                         src="https://static.gosugamers.net/264x_/61/80/b8/b2b4fb1b2d78aa99fa29286a4dd96d6ef89b6f4f78901883cd5761de61.jpg">
-                                </a>
+                                <router-link class="post-thumbnail" :to="`/news/${news.article_id}/`">
+                                    <img :alt="`${news.title}`"
+                                         :src="`${news.image_uri}`">
+                                </router-link>
                                 <div class="post-content">
-                                    <a :href="`/news/${news.article_id}`">
+                                    <router-link class="post-thumbnail" :to="`/news/${news.article_id}/`">
                                         <h4 class="post-title">
                                             {{news.title}}
                                         </h4>
-                                    </a>
+                                    </router-link>
                                     <div class="post-details">
                                         <a href="/game/dota2" class="post-section">
                                             <i class="icon-dota2"></i>
@@ -158,15 +158,15 @@
                                             <h3>Editorial</h3>
 
 
-                                            <article class="news-post display-vertical has-thumbnail">
-                                                <a class="post-thumbnail" href="/dota2/features/51992-independent-streamers-vs-tournament-organizers">
-                                                    <img alt="Independent streamers vs Tournament Organizers"
-                                                         src="https://static.gosugamers.net/264x_/15/c4/36/52154c95e6435c990e184f76a80834a35c09d73e0df6968e38f0814dec.jpg">
+                                            <article class="news-post display-vertical has-thumbnail" v-for="news in stringToDate(editorial)" :key="news.article_id">
+                                                <a class="post-thumbnail" href="`/news/${news.article_id}`">
+                                                    <img :alt="`${news.title}`"
+                                                         :src="`${news.image_uri}`">
                                                 </a>
                                                 <div class="post-content">
-                                                    <a href="/dota2/features/51992-independent-streamers-vs-tournament-organizers">
+                                                    <a href="`/news/${news.article_id}`">
                                                         <h4 class="post-title">
-                                                            Independent streamers vs Tournament Organizers
+                                                            {{news.title}}
                                                         </h4>
                                                     </a>
                                                     <div class="post-details">
@@ -175,75 +175,17 @@
                                                             Dota 2
                                                         </a>
                                                         <span class="post-date">
-                                                            <time class="relative" datetime="2020-05-14T11:49:03+02:00">
-                                                                5/14/20, 11:49 AM
+                                                            <time class="relative" :datetime="`${news.created_time}`">
+                                                                {{news.created_time}}
                                                             </time>
                                                         </span>
-                                                        <span>Pandoradota2</span>
+                                                        <span>Lê Đức Anh</span>
                                                     </div>
                                                 </div>
                                             </article>
 
 
-
-
-                                            <article class="news-post display-vertical has-thumbnail">
-                                                <a class="post-thumbnail" href="/dota2/features/51770-dpc-season-interrupted-what-now">
-                                                    <img alt="DPC season interrupted; What now?"
-                                                         src="https://static.gosugamers.net/264x_/08/eb/fa/90a996b5e3a4c780431799c2a341c2d910cb3abcacd42df5bfbb8c9cdf.jpg">
-                                                </a>
-                                                <div class="post-content">
-                                                    <a href="/dota2/features/51770-dpc-season-interrupted-what-now">
-                                                        <h4 class="post-title">
-                                                            DPC season interrupted; What now?
-                                                        </h4>
-                                                    </a>
-                                                    <div class="post-details">
-                                                        <a href="/dota2" class="post-section">
-                                                            <i class="icon-dota2"></i>
-                                                            Dota 2
-                                                        </a>
-                                                        <span class="post-date">
-                                                            <time class="relative" datetime="2020-04-16T19:30:00+02:00">
-                                                                4/16/20, 7:30 PM
-                                                            </time>
-                                                        </span>
-                                                        <span>Pandoradota2</span>
-                                                    </div>
-                                                </div>
-                                            </article>
-
-
-
-
-                                            <article class="news-post display-vertical has-thumbnail">
-                                                <a class="post-thumbnail" href="/dota2/features/51409-weplay-mad-moon-out-of-this-world">
-                                                    <img alt="WePlay! Mad Moon out of this world"
-                                                         src="https://static.gosugamers.net/264x_/53/49/6d/4a3951088d8a595ca3391f91f455e69fd69d8a31174830178375496bf3.jpg">
-                                                </a>
-                                                <div class="post-content">
-                                                    <a href="/dota2/features/51409-weplay-mad-moon-out-of-this-world">
-                                                        <h4 class="post-title">
-                                                            WePlay! Mad Moon out of this world
-                                                        </h4>
-                                                    </a>
-                                                    <div class="post-details">
-                                                        <a href="/dota2" class="post-section">
-                                                            <i class="icon-dota2"></i>
-                                                            Dota 2
-                                                        </a>
-                                                        <span class="post-date">
-                                                            <time class="relative" datetime="2020-02-27T09:08:12+01:00">
-                                                                2/27/20, 9:08 AM
-                                                            </time>
-                                                        </span>
-                                                        <span>Pandoradota2</span>
-                                                    </div>
-                                                </div>
-                                            </article>
-
-
-                                            <a href="/features" class="view-more arrow green button">
+                                            <a href="/news" class="view-more arrow green button">
                                                 More articles
                                             </a>
                                         </section>
@@ -414,14 +356,15 @@
                 topLeagues: [],
                 leagues: [],
                 topNews: [],
+                editorial: [],
                 news: [],
                 loading: true
             }
         },
         methods: {
             stringToDate: (lst) => {
-                for (var item in lst) {
-                    console.log(lst)
+                for (var idx in lst) {
+                    var item = lst[idx]
                     item.created_date = moment(String(item.created_date)).format('MM/DD/YYYY')
                 }
                 return lst
@@ -441,8 +384,10 @@
                 .get('https://esportapi.helisoft.vn/api/articles/')
                 .then(response => {
                     if (response.status === 200) {
-                        this.topNews = response.data.results.slice(0, 3)
+                        this.topNews = response.data.results.slice(0, 4)
+                        this.editorial = response.data.results.slice(4, 7)
                         this.news = response.data.results
+                        console.log(this.editorial)
                     }
                 })
                 .finally(() => this.loading = false)

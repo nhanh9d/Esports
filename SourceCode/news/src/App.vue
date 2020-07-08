@@ -275,6 +275,9 @@
         margin-left: 0;
     }
 
+    .text-right {
+        text-align: right;
+    }
 
 
 
@@ -632,8 +635,8 @@
         .tournaments li {
             border-top: 1px solid #202126;
             list-style: none;
-            display:list-item;
-            margin:0
+            display: list-item;
+            margin: 0
         }
 
             .tournaments li > a {
@@ -1666,7 +1669,7 @@
         margin-bottom: 20px;
     }
 
-    .tournament-news { 
+    .tournament-news {
         background-color: #27282d;
         color: #fcfcfc;
         padding: 20px;

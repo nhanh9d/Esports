@@ -6,7 +6,7 @@
                 <span></span>
                 <span></span>
             </a>
-            <a class="logo cell" href="../league/league.html">
+            <router-link class="logo cell" to="/">
                 <div class="g-logo">
                     <div>
                         <img src="https://www.gosugamers.net/assets/images/app/site/logos/gosu-logo-b6c6c4d6.png" />
@@ -15,19 +15,19 @@
                 <div class="game" style="background-image:url('https://www.gosugamers.net/assets/images/app/site/logos/gosugamers/logo-general-df89458c.png')">
                     <img src="https://www.gosugamers.net/assets/images/app/site/logos/gosugamers/logo-general-df89458c.png" />
                 </div>
-            </a>
+            </router-link>
             <nav class="menu cell shrink">
 
                 <ul class="main-menu" id="menu_desktop" data-indicate-active="starts-with">
                     <li class="is-active">
-                        <a href="/">
+                        <router-link to="/">
                             All eSports
-                        </a>
+                        </router-link>
                     </li>
                     <li v-for="game in games" :key="game.game_id">
-                        <a :href="`/${game.uri_name}`">
+                        <router-link class="logo cell" :to="`/${game.uri_name}`">
                             {{ game.name }}
-                        </a>
+                        </router-link>
                     </li>
                 </ul>
                 <ul class="sub-menu" data-indicate-active>
@@ -66,7 +66,6 @@
                 .then(response => {
                     if (response.status === 200) {
                         this.games = response.data.results
-                        console.log(this.games)
                     }
                 })
                 .finally(() => this.loading = false)
