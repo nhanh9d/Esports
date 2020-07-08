@@ -143,7 +143,7 @@ class Match(models.Model):
     team_right = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='fk_match_team_right') #đội bên phải
     #best_of = models.ForeignKey(BestOf, on_delete=models.CASCADE)
     #match_type = models.ForeignKey(MatchType, on_delete=models.CASCADE)
-    status = models.ForeignKey(Status, on_delete=models.CASCADE) #trạng thái của trận đấu
+    #status = models.ForeignKey(Status, on_delete=models.CASCADE) #trạng thái của trận đấu
     
     is_active = models.BooleanField(default=True) #có dùng hay không
     is_delete = models.BooleanField(default=False) #đã xóa hay chưa

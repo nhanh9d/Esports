@@ -29,7 +29,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     def update(self, instance, validated_data):
         profile_data = validated_data.pop('profile')
-        profile = instance.profile
+        try:
+            profile = instance.profile
+        except User.profile.RelatedObjectDoesNotExist:
+            profile = UserProfile.objects.create(user=instance)
 
         instance.email = validated_data.get('email', instance.email)
         instance.save()
@@ -196,7 +199,7 @@ class TeamSerializer(serializers.ModelSerializer):
             region_rank_val = None
 
         try:
-            existed = Team.objects.get(Q(world_rank=world_rank_val) | Q(region_rank=region_rank_val))
+            existed = Team.objects.get(Q(world_rank=world_rank_val))
         except Team.DoesNotExist:
             existed = None
 
@@ -223,7 +226,7 @@ class TeamSerializer(serializers.ModelSerializer):
             region_rank_val = None
 
         try:
-            existed = Team.objects.get(Q(world_rank=world_rank_val) | Q(region_rank=region_rank_val))
+            existed = Team.objects.get(Q(world_rank=world_rank_val))
         except Team.DoesNotExist:
             existed = None
 
@@ -251,7 +254,7 @@ class MatchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Match
-        fields = ('match_id', 'uri_name', 'starting_date', 'team_left', 'team_right', 'status', 'is_active', 'is_delete', 'match_status', 'match_league')
+        fields = ('match_id', 'uri_name', 'starting_date', 'team_left', 'team_right', 'is_active', 'is_delete', 'match_status', 'match_league')
         read_only_fields = ['match_id']
 
     def create(self, validated_data):
@@ -267,7 +270,6 @@ class MatchSerializer(serializers.ModelSerializer):
         instance.starting_date = validated_data.get('starting_date', instance.starting_date)
         instance.team_left = validated_data.get('team_left', instance.team_left)
         instance.team_right = validated_data.get('team_right', instance.team_right)
-        instance.status = validated_data.get('status', instance.status)
         instance.is_active = validated_data.get('is_active', instance.is_active)
         instance.is_delete = validated_data.get('is_delete', instance.is_delete)
         instance.match_status = validated_data.get('match_status', instance.match_status)

@@ -175,9 +175,9 @@
       },
       submitForm() {
         this.$refs.postForm.validate(valid => {
-          console.log(this.postForm)
           if (valid) {
             if (this.isEdit) {
+              this.postForm.league_id = this.$route.params.id
               updateLeagues(this.postForm).then(response => {
                 this.$notify({
                   title: 'Success',

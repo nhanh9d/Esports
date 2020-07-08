@@ -24,7 +24,7 @@ export function create(email, password, first_name, last_name, telephone_number)
       first_name,
       last_name,
       profile: {
-        telephoneNumber: telephone_number
+        telephoneNumber: telephone_number ? telephone_number : ''
       }
     },
     headers: {
@@ -35,14 +35,15 @@ export function create(email, password, first_name, last_name, telephone_number)
 
 export function edit(id, email, password, first_name, last_name, telephone_number) {
   return request({
-    url: `${baseApiUrl}users/${id}`,
+    url: `${baseApiUrl}users/${id}/`,
     method: 'put',
     data: {
+      email,
       password,
       first_name,
       last_name,
       profile: {
-        telephoneNumber: telephone_number
+        telephoneNumber: telephone_number ? telephone_number : ''
       }
     },
     headers: {

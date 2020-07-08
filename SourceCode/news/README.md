@@ -1,4 +1,4 @@
-# administration
+# news
 
 ## Project setup
 ```

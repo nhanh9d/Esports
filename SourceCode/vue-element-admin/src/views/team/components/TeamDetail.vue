@@ -223,13 +223,22 @@
             }
             else {
               createTeam(this.postForm).then(response => {
-                this.$notify({
-                  title: 'Success',
-                  message: 'Success create new team',
-                  type: 'success',
-                  duration: 2000
-                })
-                this.$router.push({ path: '/team/list' })
+                if (response.data.team_id) {
+                  this.$notify({
+                    title: 'Success',
+                    message: 'Success create new team',
+                    type: 'success',
+                    duration: 2000
+                  })
+                  this.$router.push({ path: '/team/list' })
+                } else {
+                  this.$notify({
+                    title: 'Error',
+                    message: 'Duplicate team info',
+                    type: 'error',
+                    duration: 2000
+                  })
+                }
               }).catch(err => {
                 console.log(err)
               })

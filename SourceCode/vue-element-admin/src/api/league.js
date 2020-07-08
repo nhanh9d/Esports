@@ -47,7 +47,7 @@ export function createLeagues(data) {
 
 export function updateLeagues(data) {
   return request({
-    url: `${baseApiUrl}leagues/${data.team_id}/`,
+    url: `${baseApiUrl}leagues/${data.league_id}/`,
     method: 'put',
     data,
     headers: {
@@ -58,7 +58,7 @@ export function updateLeagues(data) {
 
 export function removeLeagues(data) {
   return request({
-    url: `${baseApiUrl}leagues/${data.team_id}/`,
+    url: `${baseApiUrl}leagues/${data.league_id}/`,
     method: 'delete',
     headers: {
       "Authorization": "Bearer " + getToken()
