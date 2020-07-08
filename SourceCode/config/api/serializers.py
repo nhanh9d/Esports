@@ -29,7 +29,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     def update(self, instance, validated_data):
         profile_data = validated_data.pop('profile')
-        profile = instance.profile
+        try:
+            profile = instance.profile
+        except User.profile.RelatedObjectDoesNotExist:
+            profile = UserProfile.objects.create(user=instance)
 
         instance.email = validated_data.get('email', instance.email)
         instance.save()
@@ -223,7 +226,7 @@ class TeamSerializer(serializers.ModelSerializer):
             region_rank_val = None
 
         try:
-            existed = Team.objects.get(Q(world_rank=world_rank_val) | Q(region_rank=region_rank_val))
+            existed = Team.objects.get(Q(world_rank=world_rank_val))
         except Team.DoesNotExist:
             existed = None
 

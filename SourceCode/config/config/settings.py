@@ -63,7 +63,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost',
     'http://127.0.0.1:8080',
     'http://localhost:9527',
-    'http://localhost:9527'
+    'https://adminesport.helisoft.vn'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -71,7 +71,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
     'http://127.0.0.1:8080',
     'http://localhost:9527',
-    'http://localhost:9527'
+    'https://adminesport.helisoft.vn'
 ]
 
 CORS_ALLOW_HEADERS = [

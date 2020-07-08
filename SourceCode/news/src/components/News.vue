@@ -34,13 +34,6 @@
 
             <div class="content large-15 columns">
                 <section id="bannerSet" class="module featured row">
-                    <div class="large-5 columns" v-for="league of topLeagues" :key="league.league_id">
-                        <div class="row">
-                            <a :href="`/league/${league.uri_name}`">
-                                <i class="event-icon icon-dota2"></i> {{league.name}}
-                            </a>
-                        </div>
-                    </div>
                 </section>
                 <div class="row">
                     <div class="left large-4 columns">
@@ -52,28 +45,208 @@
                             </h1>
 
 
-                            <article class="news-post display-vertical has-thumbnail" v-for="news in stringToDate(topNews)" :key="news.article_id">
-                                <a class="post-thumbnail" :href="`/news/${news.article_id}`">
+                            <article class="news-post display-vertical has-thumbnail">
+                                <a class="post-thumbnail" href="/dota2/news/52124-fnatic-take-another-win-for-sea-at-esl-one-birmingham-2020">
                                     <img alt="Fnatic take another win for SEA at ESL One Birmingham 2020 "
                                          src="https://static.gosugamers.net/264x_/61/80/b8/b2b4fb1b2d78aa99fa29286a4dd96d6ef89b6f4f78901883cd5761de61.jpg">
                                 </a>
                                 <div class="post-content">
-                                    <a :href="`/news/${news.article_id}`">
+                                    <a href="/dota2/news/52124-fnatic-take-another-win-for-sea-at-esl-one-birmingham-2020">
                                         <h4 class="post-title">
-                                            {{news.title}}
+                                            Fnatic take another win for SEA at ESL One Birmingham 2020
                                         </h4>
                                     </a>
                                     <div class="post-details">
-                                        <a href="/game/dota2" class="post-section">
+                                        <a href="/dota2" class="post-section">
                                             <i class="icon-dota2"></i>
                                             Dota 2
                                         </a>
                                         <span class="post-date">
-                                            <time class="relative" :datetime="`${news.created_date}`">
-                                                {{news.created_date}}
+                                            <time class="relative" datetime="2020-06-01T17:20:00+02:00">
+                                                6/1/20, 5:20 PM
                                             </time>
                                         </span>
-                                        <span>Đặng Nhật Anh</span>
+                                        <span>Pandoradota2</span>
+                                    </div>
+                                </div>
+                            </article>
+
+
+
+
+                            <article class="news-post display-vertical has-thumbnail">
+                                <a class="post-thumbnail" href="/dota2/news/52078-the-international-10-battle-pass-has-arrived">
+                                    <img alt="The International 10 Battle Pass has arrived"
+                                         src="https://static.gosugamers.net/264x_/f4/94/bf/a1e8c449821b457be0d65f7b6835a9350e37295e2884c449433fa7054a.jpg">
+                                </a>
+                                <div class="post-content">
+                                    <a href="/dota2/news/52078-the-international-10-battle-pass-has-arrived">
+                                        <h4 class="post-title">
+                                            The International 10 Battle Pass has arrived
+                                        </h4>
+                                    </a>
+                                    <div class="post-details">
+                                        <a href="/dota2" class="post-section">
+                                            <i class="icon-dota2"></i>
+                                            Dota 2
+                                        </a>
+                                        <span class="post-date">
+                                            <time class="relative" datetime="2020-05-26T08:29:33+02:00">
+                                                5/26/20, 8:29 AM
+                                            </time>
+                                        </span>
+                                        <span>Pandoradota2</span>
+                                    </div>
+                                </div>
+                            </article>
+
+
+
+
+                            <article class="news-post display-vertical has-thumbnail">
+                                <a class="post-thumbnail" href="/dota2/news/52070-team-secret-unstoppable-take-third-consecutive-title-at-oga-dota-pit-2020">
+                                    <img alt="Team Secret unstoppable; Take third consecutive title at OGA Dota PIT 2020"
+                                         src="https://static.gosugamers.net/264x_/d5/e8/57/17363008521ac199fcd0b6202c44db0f0bffdfcc404717b0c1ba847445.jpg">
+                                </a>
+                                <div class="post-content">
+                                    <a href="/dota2/news/52070-team-secret-unstoppable-take-third-consecutive-title-at-oga-dota-pit-2020">
+                                        <h4 class="post-title">
+                                            Team Secret unstoppable; Take third consecutive title at OGA Dota PIT 2020
+                                        </h4>
+                                    </a>
+                                    <div class="post-details">
+                                        <a href="/dota2" class="post-section">
+                                            <i class="icon-dota2"></i>
+                                            Dota 2
+                                        </a>
+                                        <span class="post-date">
+                                            <time class="relative" datetime="2020-05-24T18:00:00+02:00">
+                                                5/24/20, 6:00 PM
+                                            </time>
+                                        </span>
+                                        <span>Pandoradota2</span>
+                                    </div>
+                                </div>
+                            </article>
+
+
+                            <div class="box-container">
+                                <div id="boxBottomWrapper">
+                                    <div id="slot-2">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <article class="news-post display-vertical has-thumbnail">
+                                <a class="post-thumbnail" href="/dota2/news/52055-vulcan-fight-series-coming-soon">
+                                    <img alt="Vulcan Fight Series coming soon "
+                                         src="https://static.gosugamers.net/264x_/3e/b9/17/dc78cfad57d84246811991bedbe7247eb2ef0f81a5b3cda1d7573c8f7f.png">
+                                </a>
+                                <div class="post-content">
+                                    <a href="/dota2/news/52055-vulcan-fight-series-coming-soon">
+                                        <h4 class="post-title">
+                                            Vulcan Fight Series coming soon
+                                        </h4>
+                                    </a>
+                                    <div class="post-details">
+                                        <a href="/dota2" class="post-section">
+                                            <i class="icon-dota2"></i>
+                                            Dota 2
+                                        </a>
+                                        <span class="post-date">
+                                            <time class="relative" datetime="2020-05-23T08:41:00+02:00">
+                                                5/23/20, 8:41 AM
+                                            </time>
+                                        </span>
+                                        <span>Pandoradota2</span>
+                                    </div>
+                                </div>
+                            </article>
+
+
+
+
+                            <article class="news-post display-vertical has-thumbnail">
+                                <a class="post-thumbnail" href="/dota2/news/52054-team-nigma-introduces-rising-stars-tournament">
+                                    <img alt="Team Nigma introduces Rising Stars Tournament"
+                                         src="https://static.gosugamers.net/264x_/d5/77/a7/391f2619b83e3d5600d50ebf0b44e36220901cde2494e1401d4a5b5b9e.jpg">
+                                </a>
+                                <div class="post-content">
+                                    <a href="/dota2/news/52054-team-nigma-introduces-rising-stars-tournament">
+                                        <h4 class="post-title">
+                                            Team Nigma introduces Rising Stars Tournament
+                                        </h4>
+                                    </a>
+                                    <div class="post-details">
+                                        <a href="/dota2" class="post-section">
+                                            <i class="icon-dota2"></i>
+                                            Dota 2
+                                        </a>
+                                        <span class="post-date">
+                                            <time class="relative" datetime="2020-05-21T21:00:00+02:00">
+                                                5/21/20, 9:00 PM
+                                            </time>
+                                        </span>
+                                        <span>Pandoradota2</span>
+                                    </div>
+                                </div>
+                            </article>
+
+
+
+
+                            <article class="news-post display-vertical has-thumbnail">
+                                <a class="post-thumbnail" href="/dota2/news/52022-team-secret-continue-to-win-claim-gwb-2020-title">
+                                    <img alt="Team Secret continue to win; Claim GWB 2020 title"
+                                         src="https://static.gosugamers.net/264x_/66/2c/ad/b7657541ba3aa4acc817aac66c993da0298bc1b725afb4f5df5d5bbfe3.jpg">
+                                </a>
+                                <div class="post-content">
+                                    <a href="/dota2/news/52022-team-secret-continue-to-win-claim-gwb-2020-title">
+                                        <h4 class="post-title">
+                                            Team Secret continue to win; Claim GWB 2020 title
+                                        </h4>
+                                    </a>
+                                    <div class="post-details">
+                                        <a href="/dota2" class="post-section">
+                                            <i class="icon-dota2"></i>
+                                            Dota 2
+                                        </a>
+                                        <span class="post-date">
+                                            <time class="relative" datetime="2020-05-18T10:24:05+02:00">
+                                                5/18/20, 10:24 AM
+                                            </time>
+                                        </span>
+                                        <span>Pandoradota2</span>
+                                    </div>
+                                </div>
+                            </article>
+
+
+
+
+                            <article class="news-post display-vertical has-thumbnail">
+                                <a class="post-thumbnail" href="/dota2/news/51996-fall-from-grace-newbee-banned-from-chinese-events-due-to-alleged-match-fixing">
+                                    <img alt="Fall from Grace; Newbee banned from Chinese events due to alleged match-fixing"
+                                         src="https://static.gosugamers.net/264x_/5f/19/8f/6f1add0fb798012e560f893455bdb7c6c364169ce63941092286d28df2.jpg">
+                                </a>
+                                <div class="post-content">
+                                    <a href="/dota2/news/51996-fall-from-grace-newbee-banned-from-chinese-events-due-to-alleged-match-fixing">
+                                        <h4 class="post-title">
+                                            Fall from Grace; Newbee banned from Chinese events due to alleged match-fixing
+                                        </h4>
+                                    </a>
+                                    <div class="post-details">
+                                        <a href="/dota2" class="post-section">
+                                            <i class="icon-dota2"></i>
+                                            Dota 2
+                                        </a>
+                                        <span class="post-date">
+                                            <time class="relative" datetime="2020-05-15T11:55:00+02:00">
+                                                5/15/20, 11:55 AM
+                                            </time>
+                                        </span>
+                                        <span>Pandoradota2</span>
                                     </div>
                                 </div>
                             </article>
@@ -395,14 +568,13 @@
 
         </main>
 
-        <Footer/>
+        <Footer />
     </div>
 </template>
 
 <script>
     import Footer from './Footer.vue'
     import axios from 'axios'
-    import moment from 'moment'
     export default {
         name: 'Home',
         props: {
@@ -411,20 +583,8 @@
         components: {Footer},
         data() {
             return {
-                topLeagues: [],
-                leagues: [],
-                topNews: [],
-                news: [],
+                leagues: null,
                 loading: true
-            }
-        },
-        methods: {
-            stringToDate: (lst) => {
-                for (var item in lst) {
-                    console.log(lst)
-                    item.created_date = moment(String(item.created_date)).format('MM/DD/YYYY')
-                }
-                return lst
             }
         },
         mounted() {
@@ -432,17 +592,7 @@
                 .get('https://esportapi.helisoft.vn/api/leagues/')
                 .then(response => {
                     if (response.status === 200) {
-                        this.topLeagues = response.data.results.slice(0, 3)
-                        this.leagues = response.data.results
-                    }
-                })
-                .finally(() => this.loading = false)
-            axios
-                .get('https://esportapi.helisoft.vn/api/articles/')
-                .then(response => {
-                    if (response.status === 200) {
-                        this.topNews = response.data.results.slice(0, 3)
-                        this.news = response.data.results
+                        this.leagues = response.data.results.slice(1, 4)
                     }
                 })
                 .finally(() => this.loading = false)

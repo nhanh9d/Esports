@@ -1,18 +1,17 @@
 <template>
     <div id="app">
         <Header />
-        <Home />
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
     import Header from './components/Header.vue'
-    import Home from './components/Home.vue'
 
     export default {
         name: 'App',
         components: {
-            Header, Home
+            Header
         }
     }
 </script>
@@ -489,7 +488,7 @@
         }
 
     .module h3 {
-        margin-bottom: 20px;
+        margin: 0 0 20px !important;
         color: #9698a3;
     }
 
@@ -499,7 +498,7 @@
     }
 
     .editorial.editorial h3 {
-        margin-left: 20px;
+        margin-left: 20px !important;
     }
 
     .module article {
@@ -685,7 +684,7 @@
     }
 
         .matchticker h3 {
-            margin-bottom: 20px;
+            margin: 0 0 20px !important;
             color: #9698a3;
         }
 
